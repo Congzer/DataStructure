@@ -1,6 +1,7 @@
-package com.congzer.stack;
+package com.congzer.stack.impl;
 
 import com.congzer.array.Array;
+import com.congzer.stack.Stack;
 
 public class ArrayStack<E> implements Stack<E> {
 
@@ -33,24 +34,12 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E pop() {
-        try {
-
-            return array.removeLast();
-        } catch (IllegalArgumentException e) {
-
-            return null;
-        }
+        return array.removeLast();
     }
 
     @Override
     public E peek() {
-        try {
-
-            return array.getLast();
-        } catch (IllegalArgumentException e) {
-
-            return null;
-        }
+        return array.getLast();
     }
 
     public String toString() {

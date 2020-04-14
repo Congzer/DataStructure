@@ -1,6 +1,8 @@
 package com.congzer.stack;
 
 
+import com.congzer.stack.impl.ArrayStack;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -40,12 +42,9 @@ public class Main {
 
                 stack.push(c);
             }
-            if (']' == (c)  || ')' == (c) || '}' == (c)) {
+            if (stack.isEmpty()) {
 
-                if (stack.isEmpty()) {
-
-                    return false;
-                }
+                return false;
             }
             if ('}' == c && '{' != stack.pop()) {
 
@@ -63,35 +62,33 @@ public class Main {
         return stack.isEmpty();
     }
 
+    //LeeCode 20 括号匹配 使用自己的栈数据结构实现
     private static boolean test2(String s) {
 
-        Stack<String> stack = new ArrayStack<>();
-
-        if (s.length() == 0) {
-
-            return false;
-        }
+        Stack<Character> stack = new ArrayStack<>();
         for (char c : s.toCharArray()) {
 
-            String cStr = c + "";
-            if ("{".equals(cStr) || "(".equals(cStr) || "[".equals(cStr)) {
+            if ('{' == c || '(' == c || '[' == c) {
 
-                stack.push(cStr);
-                continue;
+                stack.push(c);
             }
-            if ("]".equals(cStr) && !"[".equals(stack.peek())) {
+            if (stack.isEmpty()) {
 
                 return false;
             }
-            if (")".equals(cStr) && !"(".equals(stack.peek())) {
+            Character topChar = stack.pop();
+            if ('}' == c && '{' != topChar) {
 
                 return false;
             }
-            if ("}".equals(cStr) && !"{".equals(stack.peek())) {
+            if (')' == c && '(' != topChar) {
 
                 return false;
             }
-            stack.pop();
+            if (']' == c && '[' != topChar) {
+
+                return false;
+            }
         }
         return stack.isEmpty();
     }
