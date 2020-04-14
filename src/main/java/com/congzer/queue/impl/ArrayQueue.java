@@ -1,18 +1,23 @@
-package com.congzer.stack.impl;
+package com.congzer.queue.impl;
 
 import com.congzer.array.Array;
-import com.congzer.stack.Stack;
+import com.congzer.queue.Queue;
 
-public class ArrayStack<E> implements Stack<E> {
+/**
+ * @Description
+ * @Author zhangzhucong
+ * @Date 2020/4/14
+ **/
+public class ArrayQueue<E> implements Queue<E> {
 
     private Array<E> array;
 
-    public ArrayStack() {
+    public ArrayQueue() {
 
         array = new Array<>();
     }
 
-    public ArrayStack(int capacity) {
+    public ArrayQueue(int capacity) {
 
         array = new Array<>(capacity);
     }
@@ -28,25 +33,26 @@ public class ArrayStack<E> implements Stack<E> {
     }
 
     @Override
-    public void push(E e) {
+    public void enqueue(E e) {
         array.addLast(e);
     }
 
     @Override
-    public E pop() {
-        return array.removeLast();
+    public E dequeue() {
+        return array.removeFirst();
     }
 
     @Override
-    public E peek() {
-        return array.getLast();
+    public E getFront() {
+        return array.getFirst();
     }
 
+    @Override
     public String toString() {
 
         StringBuilder res = new StringBuilder();
-        res.append("Stack: ");
-        res.append("[");
+        res.append("Queue: ");
+        res.append("front [");
         for (int i = 0; i < getSize(); i++) {
 
             res.append(array.get(i));
@@ -55,7 +61,7 @@ public class ArrayStack<E> implements Stack<E> {
                 res.append(", ");
             }
         }
-        res.append("] top");
+        res.append("] tail");
         return res.toString();
     }
 }
