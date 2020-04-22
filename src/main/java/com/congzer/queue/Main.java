@@ -1,6 +1,7 @@
 package com.congzer.queue;
 
 import com.congzer.queue.impl.ArrayQueue;
+import com.congzer.queue.impl.LinkedListQueue;
 import com.congzer.queue.impl.LoopQueue;
 
 import java.util.Random;
@@ -17,11 +18,13 @@ public class Main {
         int opCount = 100000;
         Queue<Integer> arrayQueue = new ArrayQueue<>();
         Queue<Integer> loopQueue = new LoopQueue<>();
-        System.out.println("arrayQueue: " + testQueue(arrayQueue, opCount));
-        System.out.println("loopQueue: " + testQueue(loopQueue, opCount));
+        Queue<Integer> linkedListQueue = new LinkedListQueue<>();
+        System.out.println("arrayQueue: " + performanceTest(arrayQueue, opCount));
+        System.out.println("loopQueue: " + performanceTest(loopQueue, opCount));
+        System.out.println("linkedListQueue: " + performanceTest(linkedListQueue, opCount));
     }
 
-    private static double testQueue(Queue<Integer> queue, int opCount) {
+    private static double performanceTest(Queue<Integer> queue, int opCount) {
 
         Random random = new Random();
         long startTime = System.nanoTime();
@@ -35,57 +38,5 @@ public class Main {
         }
         long endTime = System.nanoTime();
         return (endTime - startTime) / 1000000000.0;
-    }
-
-    private static void test() {
-
-        Integer i = 500;
-        Integer j = 500;
-        System.out.println(i.equals(j));
-    }
-
-
-    private static void loopQueueTest() {
-
-        Queue<Integer> queue = new LoopQueue<>();
-        System.out.println("入队：");
-        for (int i = 0; i < 11; i++) {
-
-            queue.enqueue(i);
-            System.out.println(queue);
-        }
-
-        System.out.println("出队：");
-        for (int i = 0; i < 4; i++) {
-
-            queue.dequeue();
-            System.out.println(queue);
-        }
-
-        System.out.println("入队：");
-        for (int i = 0; i < 3; i++) {
-
-            queue.enqueue(9 + i);
-            System.out.println(queue);
-        }
-
-        System.out.println("出队：");
-        for (int i = 0; i < 10; i++) {
-
-            queue.dequeue();
-            System.out.println(queue);
-        }
-    }
-
-    private static void arrayQueueTest() {
-
-        Queue<Integer> queue = new ArrayQueue<>();
-        for (int i = 0; i < 3; i++) {
-
-            queue.enqueue(i);
-            System.out.println(queue);
-        }
-        System.out.println(queue.dequeue());
-        System.out.println(queue);
     }
 }

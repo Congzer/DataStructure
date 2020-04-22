@@ -8,8 +8,6 @@ import com.congzer.queue.Queue;
  * @Author zhangzhucong
  * @Date 2020/4/14
  **/
-
-//数组队列的出队复杂度为O(n),可通过循环队列来优化为O(1)
 public class ArrayQueue<E> implements Queue<E> {
 
     private Array<E> array;
@@ -34,11 +32,13 @@ public class ArrayQueue<E> implements Queue<E> {
         return array.isEmpty();
     }
 
+    //均摊 O(n)
     @Override
     public void enqueue(E e) {
         array.addLast(e);
     }
 
+    //O(n) 出队时第一个元素出去，后面的元素都要向前移动位置，可通过循环队列来优化为O(1)
     @Override
     public E dequeue() {
         return array.removeFirst();

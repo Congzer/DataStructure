@@ -27,16 +27,19 @@ public class ArrayStack<E> implements Stack<E> {
         return array.isEmpty();
     }
 
+    //均摊O(1)
     @Override
     public void push(E e) {
         array.addLast(e);
     }
 
+    //均摊O(1)
     @Override
     public E pop() {
         return array.removeLast();
     }
 
+    //O(1)
     @Override
     public E peek() {
         return array.getLast();

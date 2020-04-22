@@ -2,6 +2,9 @@ package com.congzer.stack;
 
 
 import com.congzer.stack.impl.ArrayStack;
+import com.congzer.stack.impl.LinkedStack;
+
+import java.util.Random;
 
 public class Main {
 
@@ -19,13 +22,36 @@ public class Main {
         System.out.println(stack);
 */
         //System.out.println(test("{([[)}"));
-        System.out.println(": " + test(""));
+        /*System.out.println(": " + test(""));
         System.out.println("]]]]: " + test("]]]]"));
         System.out.println("{{{{: " + test("{{{{"));
         System.out.println("{[(]: " + test("{[(]"));
         System.out.println("{}[]((: " + test("{}[](("));
         System.out.println("{}[](): " + test("{}[]()"));
-        System.out.println("{({})}: " + test("{({})}"));
+        System.out.println("{({})}: " + test("{({})}"));*/
+
+        int opCount = 100000;
+        Stack<Integer> arrayStack = new ArrayStack<>();
+        Stack<Integer> linkedStack = new LinkedStack<>();
+        System.out.println("arrayStack: " + stackPerformanceTest(arrayStack, opCount));
+        System.out.println("linkedStack: " + stackPerformanceTest(linkedStack, opCount));
+    }
+
+    private static Double stackPerformanceTest(Stack<Integer> stack, int opCount) {
+
+        long beginTime = System.nanoTime();
+        Random random = new Random();
+        for (int i = 0; i < opCount; i++) {
+
+            stack.push(random.nextInt(Integer.MAX_VALUE));
+        }
+        for (int i = 0; i < opCount; i++) {
+
+            stack.pop();
+        }
+        long endTime = System.nanoTime();
+        return (endTime - beginTime) / 1000000000.0;
+
     }
 
     private static boolean test(String s) {
@@ -93,5 +119,4 @@ public class Main {
         return stack.isEmpty();
     }
 
-    java.util.Stack<Character> stack = new java.util.Stack<>();
 }
