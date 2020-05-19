@@ -113,6 +113,7 @@ public class LeeCode203 {
         return dummyHead.next;
     }
 
+    //将链表分解为一个一个的子节点，在此例中该子节点为头节点，然后再对头节点进行操作
     public static ListNode removeElementsWithRecursion(ListNode head, int val) {
 
         if (head == null) {
@@ -130,13 +131,20 @@ public class LeeCode203 {
         }
     }
 
+    public static ListNode removeElementsWithRecursion2(ListNode head, int val) {
+
+        if (head == null) return null;
+        head.next = removeElementsWithRecursion(head.next, val);
+        return head.val == val ? head.next : head;
+    }
+
     public static void main(String[] args) {
 
-        //int[] arr = {6, 6, 1, 2, 6, 4, 5, 6, 6, 6, 7};
-        int[] arr = {1, 2, 6};
+        int[] arr = {6, 6, 1, 2, 6, 4, 5, 6, 6, 6, 7};
+        //int[] arr = {1, 2, 6};
         ListNode listNode = new ListNode(arr);
         System.out.println(listNode);
 
-        System.out.println(removeElementsWithRecursion(listNode, 6));
+        System.out.println(removeElementsWithRecursion2(listNode, 6));
     }
 }

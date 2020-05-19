@@ -10,8 +10,6 @@ package com.congzer.linkdlist;
 * 递归基本原则：
 *   1、求解基本问题
 *   2、把原问题转化为更小的问题
-*
-*
 * */
 public class Recursion {
 

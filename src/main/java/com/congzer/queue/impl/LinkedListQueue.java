@@ -57,7 +57,7 @@ public class LinkedListQueue<E> implements Queue<E> {
         return size == 0;
     }
 
-    //链尾入队 //O(1)
+    //链尾入队 O(1)
     @Override
     public void enqueue(E e) {
 
