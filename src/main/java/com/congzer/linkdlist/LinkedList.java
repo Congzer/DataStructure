@@ -8,33 +8,6 @@ package com.congzer.linkdlist;
 //增删改查时间复杂度：O(n) 若增删查只对链表头进行操作： O(1)，又因为它是动态的，不会浪费空间，故具有优势
 public class LinkedList<E> {
 
-    //节点类
-    private class Node{
-
-        public E e;
-
-        public Node next;
-
-        public Node() {
-            this(null, null);
-        }
-
-        public Node(E e) {
-            this(e, null);
-        }
-
-        public Node(E e, Node next) {
-            this.e = e;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-
-            return e.toString();
-        }
-    }
-
     private Node dummyHead;
 
     private int size;
@@ -204,4 +177,52 @@ public class LinkedList<E> {
 
         return remove(size - 1);
     }
+
+    public void removeElement(E e) {
+
+        if (!contains(e)) {
+
+            throw new IllegalArgumentException("Not Contain");
+        }
+        dummyHead = removeElementWithRecursion(dummyHead, e);
+    }
+
+    private Node removeElementWithRecursion(Node node, E e) {
+
+        if (e.equals(node.e)) {
+
+            size--;
+            return node.next;
+        }
+        node.next = removeElementWithRecursion(node.next, e);
+        return node;
+    }
+
+    //节点类
+    private class Node{
+
+        public E e;
+
+        public Node next;
+
+        public Node() {
+            this(null, null);
+        }
+
+        public Node(E e) {
+            this(e, null);
+        }
+
+        public Node(E e, Node next) {
+            this.e = e;
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+
+            return e.toString();
+        }
+    }
+
 }
