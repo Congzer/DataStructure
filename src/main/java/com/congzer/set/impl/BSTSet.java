@@ -4,7 +4,7 @@ import com.congzer.bst.BST;
 import com.congzer.set.Set;
 
 /**
- * @Description 二分搜索树实现的集合
+ * @Description 二分搜索树实现的集合，有序
  * @Author zhangzhucong
  * @Date 2020/6/5
  **/

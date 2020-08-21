@@ -4,7 +4,7 @@ import com.congzer.linkdlist.LinkedList;
 import com.congzer.set.Set;
 
 /**
- * @Description 链表实现的集合
+ * @Description 链表实现的集合，无序（基于哈希表的实现效率会更高）
  * @Author zhangzhucong
  * @Date 2020/6/6
  **/

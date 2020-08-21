@@ -1,6 +1,5 @@
 package com.congzer.bst;
 
-import com.congzer.linkdlist.LinkedList;
 import com.congzer.queue.Queue;
 import com.congzer.queue.impl.LinkedListQueue;
 import com.congzer.stack.Stack;
@@ -347,7 +346,6 @@ public class BST<E extends Comparable<E>> {
 
                 queue.enqueue(cur.right);
             }
-
         }
     }
 

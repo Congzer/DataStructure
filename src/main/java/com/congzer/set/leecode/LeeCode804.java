@@ -1,11 +1,7 @@
-package com.congzer.set;
+package com.congzer.set.leecode;
 
+import com.congzer.set.Set;
 import com.congzer.set.impl.BSTSet;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.TreeSet;
 
 /**
  * @Description 唯一的摩尔斯密码词
@@ -21,6 +17,7 @@ public class LeeCode804 {
         System.out.println(uniqueMorseRepresentations(words));
     }
 
+    /* 对传入的单词数组，返回不重复摩斯密码的个数*/
     public static int uniqueMorseRepresentations(String[] words) {
 
         //TreeSet<String> set = new TreeSet<>();
