@@ -9,7 +9,8 @@ import com.congzer.map.Map;
  **/
 public class LinkedListMap<K, V> implements Map<K, V> {
 
-    private Node dummyNode;
+    /* final 一旦赋值，便无法修改 */
+    private final Node dummyNode;
 
     private int size;
 

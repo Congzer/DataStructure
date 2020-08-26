@@ -1,14 +1,14 @@
 package com.congzer.map.impl;
 
+import com.congzer.bst.BST;
 import com.congzer.map.Map;
 
 /**
- * @Description
+ * @Description 基于二分搜索树实现的映射
  * @Author zhangzhucong
  * @Date 2020/8/21
  **/
 public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
-
 
     private Node root;
 
@@ -16,50 +16,35 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     public BSTMap() {
 
+        this.root = null;
         this.size = 0;
     }
 
     @Override
     public void add(K key, V value) {
 
-        if (root == null) {
+        root = add(root, key, value);
 
-            root = new Node(key, value);
-            return;
-        }
-        Node node = getNode(key);
-        if (node != null) {
-
-            node.value = value;
-        } else {
-
-            add(key, value, root);
-        }
     }
 
-    private void add(K key, V value, Node node) {
+    private Node add(Node node, K key, V value) {
 
-        // 递归终止条件
-        if (node.key.compareTo(key) == 0) {
+        if (node == null) {
 
-            return;
-        } else if (node.key.compareTo(key) > 0 && node.left == null) {
-
-            node.left = new Node(key, value);
-        } else if (node.key.compareTo(key) < 0 && node.right == null) {
-
-            node.right = new Node(key, value);
+            size++;
+            return new Node(key, value);
         }
-
-        // 递归
         if (node.key.compareTo(key) > 0) {
 
-            add(key, value, node.left);
-        }
-        if (node.key.compareTo(key) < 0) {
+            node.left = add(node.left, key, value);
+        } else if (node.key.compareTo(key) < 0) {
 
-            add(key, value, node.right);
+            node.right = add(node.right, key, value);
+        } else {
+
+            node.value = value;
         }
+        return node;
     }
 
     // TODO 还未实现
@@ -71,8 +56,73 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
             throw new IllegalArgumentException("key_no_exist");
         }
-        getNode(key, root);
-        return null;
+        root = remove(root, key);
+        return node.value;
+    }
+
+    private Node remove(Node node, K key) {
+
+        if (node == null) {
+
+            return null;
+        }
+        if (node.key.compareTo(key) > 0) {
+
+            node.left = remove(node.left, key);
+            return node;
+        } else if (node.key.compareTo(key) < 0) {
+
+            node.right = remove(node.right, key);
+            return node;
+        } else {
+
+            if (node.left == null) {
+
+                // 待删除节点的左节点为空时，返回右节点以替换待删除节点
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                return rightNode;
+            }
+            if (node.right == null) {
+
+                // 待删除节点的右节点为空时，返回左节点以替换待删除节点
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                return leftNode;
+            }
+
+            // 待删除节点的左右节点都不为空时，找到比待删除节点大的最小节点，即待删除节点右子树中的最小节点，返回该节点以替换待删除节点
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+
+            node.left = node.right = null;
+            return successor;
+        }
+    }
+
+    private Node removeMin(Node node) {
+
+        if (node.left == null) {
+
+            Node tem = node.right;
+            node.right = null;
+            size--;
+            return tem;
+        }
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    private Node minimum(Node node) {
+
+        if (node.left == null) {
+
+            return node;
+        }
+        return minimum(node.left);
     }
 
     @Override
@@ -117,6 +167,8 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     @Override
     public String toString() {
+
+
         return "BSTMap{}";
     }
 

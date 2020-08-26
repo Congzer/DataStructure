@@ -425,9 +425,7 @@ public class BST<E extends Comparable<E>> {
 
     private String generateDepthString(int depth) {
 
-        StringBuilder res = new StringBuilder();
-        res.append("--".repeat(Math.max(0, depth)));
-        return res.toString();
+        return "--".repeat(Math.max(0, depth));
     }
 
     private class Node {
