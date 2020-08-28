@@ -1,14 +1,14 @@
-package com.congzer.set.leecode;
+package com.congzer.leetcode;
 
 import com.congzer.set.Set;
 import com.congzer.set.impl.BSTSet;
 
 /**
- * @Description 唯一的摩尔斯密码词
+ * @Description 唯一的摩尔斯密码词 set
  * @Author zhangzhucong
  * @Date 2020/6/11
  **/
-public class LeeCode804 {
+public class Num804 {
 
     public static void main(String[] args) {
 

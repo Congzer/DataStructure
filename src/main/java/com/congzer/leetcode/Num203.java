@@ -1,12 +1,22 @@
-package com.congzer.linkdlist;
+package com.congzer.leetcode;
 
 /**
- * @Description
+ * @Description 删除链表中等于给定值 val 的所有节点。 递归、链表
  * @Author zhangzhucong
  * @Date 2020/4/22
  **/
-public class LeeCode203 {
+public class Num203 {
 
+
+    public static void main(String[] args) {
+
+        int[] arr = {6, 6, 1, 2, 6, 4, 5, 6, 6, 6, 7};
+        //int[] arr = {1, 2, 6};
+        ListNode listNode = new ListNode(arr);
+        System.out.println(listNode);
+
+        System.out.println(removeElementsWithRecursion2(listNode, 6));
+    }
     //Definition for singly-linked list.
     static class ListNode {
 
@@ -136,15 +146,5 @@ public class LeeCode203 {
         if (head == null) return null;
         head.next = removeElementsWithRecursion(head.next, val);
         return head.val == val ? head.next : head;
-    }
-
-    public static void main(String[] args) {
-
-        int[] arr = {6, 6, 1, 2, 6, 4, 5, 6, 6, 6, 7};
-        //int[] arr = {1, 2, 6};
-        ListNode listNode = new ListNode(arr);
-        System.out.println(listNode);
-
-        System.out.println(removeElementsWithRecursion2(listNode, 6));
     }
 }
