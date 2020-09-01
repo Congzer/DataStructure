@@ -3,25 +3,21 @@ package com.congzer.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 /**
  * @Description: 输入两个数组，输出他们的交集数组（元素重复）；Map
  * @Author: zhangzhucong
  * @Date: 2020/8/27
  */
-public class Num350 {
+public class GetIntersectionOfTwoArray_350 {
 
     public static void main(String[] args) {
 
         int[] num1 = new int[]{4,4,9,5};
         int[] num2 = new int[]{9,4,9,8,4};
-        int[] intersection = new Num350().getIntersection(num1, num2);
+        int[] intersection = new GetIntersectionOfTwoArray_350().getIntersection(num1, num2);
         for (int i : intersection) {
 
             System.out.println(i);

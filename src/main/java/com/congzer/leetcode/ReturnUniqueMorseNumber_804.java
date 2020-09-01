@@ -8,7 +8,7 @@ import com.congzer.set.impl.BSTSet;
  * @Author zhangzhucong
  * @Date 2020/6/11
  **/
-public class Num804 {
+public class ReturnUniqueMorseNumber_804 {
 
     public static void main(String[] args) {
 

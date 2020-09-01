@@ -5,7 +5,7 @@ package com.congzer.leetcode;
  * @Author zhangzhucong
  * @Date 2020/4/22
  **/
-public class Num203 {
+public class RemoveGivenValueOfListNode_203 {
 
 
     public static void main(String[] args) {

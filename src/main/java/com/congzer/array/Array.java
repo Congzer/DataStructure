@@ -253,4 +253,11 @@ public class Array<E> {
         }
         return all.length > 0;
     }
+
+    public void swap(int index, int parent) {
+
+        E tem = data[parent];
+        data[parent] = data[index];
+        data[index] = tem;
+    }
 }

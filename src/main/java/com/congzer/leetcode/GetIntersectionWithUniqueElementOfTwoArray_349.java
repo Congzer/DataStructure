@@ -9,13 +9,13 @@ import java.util.stream.Collectors;
  * @Author: zhangzhucong
  * @Date: 2020/8/27
  */
-public class Num349 {
+public class GetIntersectionWithUniqueElementOfTwoArray_349 {
 
     public static void main(String[] args) {
 
         int[] num1 = new int[]{4,9,5};
         int[] num2 = new int[]{9,4,9,8,4};
-        int[] intersection = new Num349().getIntersection(num1, num2);
+        int[] intersection = new GetIntersectionWithUniqueElementOfTwoArray_349().getIntersection(num1, num2);
         for (int i : intersection) {
 
             System.out.println(i);
