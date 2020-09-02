@@ -31,39 +31,54 @@ public class MaxHeap<E extends Comparable<E>> {
         return data.isEmpty();
     }
 
+    // O(logn)
     public void add(E e) {
 
         data.addLast(e);
         siftUp(data.getSize() - 1);
     }
 
-    public E extraMax() {
+    // O(logn)
+    public E extractMax() {
 
-        E max = data.get(0);
-        data.set(0, data.get(getSize() - 1));
-        siftDown();
+        E max = findMax();
+        data.swap(0, data.getSize() - 1);
+        data.removeLast();
+        siftDown(0);
         return max;
     }
 
-    private void siftDown() {
+    public E findMax() {
 
-        int index = 0;
-        while (data.get(index).compareTo(data.get(leftChild(index))) < 0 || data.get(index).compareTo(data.get(rightChild(index))) < 0) {
+        if (data.getSize() == 0) {
 
-            int maxIndex = data.get(leftChild(index)).compareTo(data.get(rightChild(index))) > 0 ? leftChild(index) : rightChild(index);
+            throw new IllegalArgumentException("empty");
+        }
+        return data.get(0);
+    }
+
+    private void siftDown(int index) {
+
+        // 当索引为index的节点的左子节点索引小于数组长度时，此时该节点一定没有子节点
+        while (leftChild(index) < data.getSize()) {
+
+            int maxIndex = leftChild(index);
+            if (maxIndex + 1 < data.getSize() && data.get(maxIndex + 1).compareTo(data.get(maxIndex)) > 0) {
+
+                // 此时存在右子节点，且右字节点得值大于左子节点
+                maxIndex = maxIndex + 1;
+            }
+
+            // 父节点大于等于子节点时，结束循环
+            if (data.get(index).compareTo(data.get(maxIndex)) >= 0) {
+
+                break;
+            }
+
+            // 父节点小于子节点时, 进行交换
             data.swap(index, maxIndex);
             index = maxIndex;
         }
-    }
-
-    public static void main(String[] args) {
-
-        MaxHeap<Integer> heap = new MaxHeap<>();
-        heap.add(3);
-        heap.add(7);
-        heap.add(7);
-        heap.add(7);
-        System.out.println(heap.extraMax());
     }
 
     private void siftUp(int index) {
@@ -86,11 +101,11 @@ public class MaxHeap<E extends Comparable<E>> {
 
     private int leftChild(int index) {
 
-        return (index * 2 + 1) >= getSize() ? index : index * 2 + 1;
+        return index * 2 + 1;
     }
 
     private int rightChild(int index) {
 
-        return index * 2 + 2 >= getSize() ? index : index * 2 + 2;
+        return index * 2 + 2;
     }
 }
