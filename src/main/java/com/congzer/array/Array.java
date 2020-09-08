@@ -25,6 +25,16 @@ public class Array<E> {
         this(10);
    }
 
+    public Array(E[] arr) {
+
+        data = (E[])new Object[arr.length];
+        for (int i = 0, len = arr.length; i < len; i++) {
+
+            data[i] = arr[i];
+        }
+        size = arr.length;
+    }
+
    //传入静态数组，生成Array对象
    public Array(int...ints) {
 

@@ -2,6 +2,7 @@ package com.congzer.maxheap;
 
 import com.congzer.array.Array;
 
+
 /**
  * @Description: 最大堆
  * @Author: zhangzhucong
@@ -19,6 +20,19 @@ public class MaxHeap<E extends Comparable<E>> {
     public MaxHeap(int capacity) {
 
         data = new Array<>(capacity);
+    }
+
+    // Heapify,堆化，传入任意一个数组，将其转换成最大堆， O(n)
+    // 1、找到数组中最后一个非叶子节点 parent(arr.length - 1)
+    // 2、从最后一个非叶子节点从后遍历进行下沉操作
+    // 若从数组中一个一个使用add方法放入堆中，时间复杂度为 O(nlogn)
+    public MaxHeap(E[] arr) {
+
+        data = new Array<>(arr);
+        for (int i = parent(arr.length - 1); i >= 0; i--) {
+
+            siftDown(i);
+        }
     }
 
     public int getSize() {
@@ -55,6 +69,17 @@ public class MaxHeap<E extends Comparable<E>> {
             throw new IllegalArgumentException("empty");
         }
         return data.get(0);
+    }
+
+    // O（logn）取出最大值，并放入一个新的值
+    public E replace(E e) {
+
+        E max = findMax();
+        // 添加元素
+        data.set(0, e);
+        // 第一位下沉
+        siftDown(0);
+        return max;
     }
 
     private void siftDown(int index) {
